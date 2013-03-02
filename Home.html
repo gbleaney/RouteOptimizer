@@ -3,24 +3,47 @@
   <head>
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
     <style type="text/css">
-      html { height: 100% }
-      body { height: 100%; margin: 0; padding: 0 }
-      ul { list-style-type: none;}
-      #map_canvas { height: 100% }
+      html { 
+          height: 100%;
+      }
+      body { 
+          height: 100%; 
+          margin: 20; 
+          padding: 0; 
+          text-align: center;
+      }
+      .content {
+          width:450px;
+          margin:0px auto;
+          text-align:left;
+      }
+      ul { 
+          list-style-type: none;
+          padding: 0;
+      }
+      #map_canvas { 
+          height: 100%;
+          text-align: center;
+      }
     </style>
     <script type="text/javascript"
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjQjjmkJaPi6lHhGmerGn6O543b4lD29A&sensor=true">
     </script>
-     <script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js?ver=1.3.2'></script>
+     <script type='text/javascript' 
+     src='http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.9.1.js'>
+     </script>
     <script type="text/javascript" src="MapSettings.js">
     </script>
   </head>
   <body onload="initialize()">
-      <div id="InputBoxes">
-          <ul id="InputBoxesList" onload="addLocationBox();">
-          </ul>
-      </div>
-      <input id="PlanRoute" type="button" value="Plan Route!" onclick="planRoute();"/>
-    <div id="map_canvas" style="width:100%; height:100%"></div>
+      <div class="content">
+          <input id="AddLocation" type="button" value="Add Another Location" onclick="addLocationBox();"/>
+          <input id="PlanRoute" type="button" value="Plan Route!" onclick="planRoute();"/>
+          <div id="InputBoxes">
+              <ul id="InputBoxesList">
+              </ul>
+          </div>
+        <div id="map_canvas" style="width:400px; height:400px"></div>
+    </div>
   </body>
 </html>
