@@ -14,11 +14,29 @@ var inputBox =
     '    <input class="locationInput" type="text" />' + '\n';
 
 function addLocationBox(){
-    $('#InputBoxesList').append('<li>Search by: '+selectElement+inputBox+removeFieldButton+'</li>');
+    $('#InputBoxesList').append('<li>'+selectElement+inputBox+removeFieldButton+'</li>');
 }
 
 function removeLocationBox(button){
     $(button.parentNode).remove();
+}
+
+function setSizes(){
+    var mapDimensions;
+    var width = window.innerWidth;
+    if(width > 420){
+        mapDimensions = 400
+    }
+    else {
+        mapDimensions = width-20;
+    }
+    $("#map_container").width(mapDimensions);
+    $("#map_canvas").width(mapDimensions);
+    $("#content").width(mapDimensions);
+    $("#map_container").height(mapDimensions);
+    $("#map_canvas").height(mapDimensions);
+    
+    google.maps.event.trigger(map, 'resize');
 }
 
 //Unimplemented functionality

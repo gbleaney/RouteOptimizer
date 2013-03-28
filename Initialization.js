@@ -13,6 +13,9 @@ function initialize() {
     centreOnCurrentLocation();
     addLocationBox();
     placesService = new google.maps.places.PlacesService(map);
+    
+    setSizes();
+    $(window).resize(function () { setSizes() });
 }
 
 function centreOnCurrentLocation(){
@@ -28,8 +31,3 @@ function centreOnCurrentLocation(){
     }
     
 }
-
-function resizeMap(){
-    google.maps.event.trigger(map, 'resize');
-}
-
