@@ -11,8 +11,8 @@ function initialize() {
     map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
     directionsDisplay.setMap(map);
     centreOnCurrentLocation();
-    addLocationBox();
-    placesService = new google.maps.places.PlacesService(map);
+      addLocationBox();
+      placesService = new google.maps.places.PlacesService(map);
     
     setSizes();
     $(window).resize(function () { setSizes() });
