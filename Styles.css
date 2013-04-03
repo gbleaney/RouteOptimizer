@@ -1,0 +1,162 @@
+/* 
+    Document   : Styles
+    Created on : 2-Apr-2013, 8:59:06 PM
+    Author     : Graham
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+html { 
+    min-height: 100%;
+    font-family: 'Lato', sans-serif;
+    padding: 0;
+    margin:  0;
+}
+body { 
+    padding: 0;
+    margin:  0;
+    text-align: center;
+    background: rgb(0,99,99); /* Old browsers */
+    background: -moz-linear-gradient(top, rgba(0,99,99,1) 0%, rgba(0,153,153,1) 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,99,99,1)), color-stop(100%,rgba(0,153,153,1))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, rgba(0,99,99,1) 0%,rgba(0,153,153,1) 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, rgba(0,99,99,1) 0%,rgba(0,153,153,1) 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, rgba(0,99,99,1) 0%,rgba(0,153,153,1) 100%); /* IE10+ */
+    background: linear-gradient(to bottom, rgba(0,99,99,1) 0%,rgba(0,153,153,1) 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#006363', endColorstr='#009999',GradientType=0 ); /* IE6-9 */ 
+}
+#content {
+    padding: 0;
+    margin:0px auto;
+    text-align:left;
+}
+#content_padding{
+    padding: 0.5em;
+}
+
+
+#title_text {
+    font-size: 6em;
+    text-align: left;
+    color: #FFFFFF;
+    text-shadow: 2px 2px 3px #000000;
+    padding: 0;
+    margin: 0;
+}
+#intro_text {
+    padding-left: 1em;
+    padding-right: 1em;
+    padding-top: 0.4em;
+    padding-bottom: 0.6em;
+    /*color: #5CCCCC;*/
+    margin-top: 0.7em;
+    margin-bottom: 1.4em;
+
+    background-color: #FFFFFF;
+    -moz-border-radius: 0.6em;
+    -webkit-border-radius: 0.6em;
+    border-radius: 0.6em;
+}
+
+
+#input_boxes{
+    padding-left: 0.05em;
+    padding-right: 0.05em;
+    padding-top: 0.1em;
+    padding-bottom: 0;
+    margin-top: 0.7em;
+    margin-bottom: 0.7em;
+
+    background-color: #FFFFFF;
+    -moz-border-radius: 0.6em;
+    -webkit-border-radius: 0.6em;
+    border-radius: 0.6em;
+}
+#InputBoxesList { 
+    list-style-type: none;
+    padding: 0;
+    padding-top: 0.2em;
+    margin: 0;
+}
+#InputBoxesList > li {
+    padding-top: 0.2em;
+    padding-bottom: 0.2em;
+    padding-left: 0.2em;
+    border-bottom: solid #CCCCCC thin;
+
+}
+#InputBoxesList > li > .locationTypeSelector{
+    float: left;
+    border: none;
+}
+
+#InputBoxesList > li > .removeFieldButton{
+    float: right;
+    background: #FFFFFF
+}
+#InputBoxesList > li > .removeFieldButton:hover{
+    float: right;
+    background: #CCCCCC
+}
+
+#InputBoxesList > li:last-child {
+    border: none;
+}
+
+#InputBoxesList > li > input[type="text"] {
+    border: none;
+    font: italic;
+    color: #CCCCCC;
+    padding-left: 0.4em;
+}
+
+#InputBoxesList > li > #AddLocationButton {
+    width: 100%;
+    height: 100%;
+    background: #FFFFFF;
+    color: #999999;
+}
+
+#InputBoxesList > li > #AddLocationButton:hover {
+    cursor: pointer;
+}
+
+input[type="button"] {
+    -moz-border-radius: 0.4em;
+    -webkit-border-radius: 0.4em;
+    border-radius: 0.4em;
+    border: none;
+}
+
+input[type="button"]:hover {
+    cursor: pointer;
+}
+
+
+#map_canvas { 
+    text-align: center;
+}
+#map_container {
+    -moz-border-radius: 1em;
+    -webkit-border-radius: 1em;
+    border-radius: 1em;
+    overflow: hidden;
+    border-style: solid;
+    border-width: 0em;
+
+    
+    /*border-color: #FF9640;*/
+}
+#PlanRoute{
+    -moz-border-radius: inherit;
+    -webkit-border-radius: inherit;
+    border-radius: inherit;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    background: rgba(0,0,0,0.8);
+    color: white;
+    font-size: 3em;
+    z-index: 2;
+}
+

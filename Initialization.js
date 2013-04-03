@@ -15,7 +15,11 @@ function initialize() {
       placesService = new google.maps.places.PlacesService(map);
     
     setSizes();
-    $(window).resize(function () { setSizes() });
+    $(window).resize(
+        function () { 
+            setSizes(); 
+        }
+    );
 }
 
 function centreOnCurrentLocation(){

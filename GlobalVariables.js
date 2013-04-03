@@ -7,6 +7,11 @@ var currentLocation;
 
 //Define the options availible for the select list
 var selectTypes = {
+    Default : {
+        value: -1, 
+        name: "Choose Option", 
+        code: "CO"
+    }, 
     Address : {
         value: 0, 
         name: "Address", 

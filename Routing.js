@@ -1,13 +1,13 @@
 function planRoute(){
+    hideMapButton();
     parseDestinations();
-    
 }
 
 function parseDestinations(){
     var listItems = $('#InputBoxesList').children();
     var destinations = new Array();
     
-    for(var i=0; i< listItems.length;i++){
+    for(var i=0; i< listItems.length - 1;i++){
         var selector = $(listItems[i]).children('.locationTypeSelector')[0];
         var locationInputBox = $(listItems[i]).children('.locationInput')[0];
         var selectedValue = selector.options[selector.selectedIndex].value.replace('select_','');
@@ -27,13 +27,14 @@ function parseDestinations(){
                 destinations.push(null);
             }
                     
-            if(listItems.length == destinations.length){
+            if(listItems.length-1 == destinations.length){
                 calcRouteFromCurrentLocation(destinations);
             }
         }
         
         switch (selectedValue) {
-            
+            case selectTypes.Default.value:
+                break;
             case selectTypes.Address.value:
                 destinations.push({
                     location: locationInputBox.value,
@@ -79,7 +80,7 @@ function parseDestinations(){
                 alert("Error! Select value \""+selectedValue+"\" is not recognized");
         }
     }
-    if(listItems.length == destinations.length){
+    if(listItems.length-1 == destinations.length){
         calcRouteFromCurrentLocation(destinations);
     }
 }
