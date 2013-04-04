@@ -64,25 +64,38 @@ function setSizes(){
         var selector = $(li.children('.locationTypeSelector')[0]);
         var input = $(li.children('.locationInput')[0]);
         var button = $(li.children('.removeFieldButton')[0]);
-        var newWidth = li.innerWidth();
+        var newWidth = li.outerWidth();
         
-        var selectorOuterWidth = selector.outerWidth();
-        var buttonOuterWidth = button.outerWidth();
-        var inputLeftPadding = input.css('padding-left');
-        var inputRightPadding = input.css('padding-right');
-        var liLeftPadding = li.css('padding-left');
-        var liRightPadding = li.css('padding-right');
-        var padding = parseInt(inputLeftPadding.substring(0, inputLeftPadding.length-2)) + 
-                      parseInt(inputRightPadding.substring(0, inputRightPadding.length-2)) + 
-                      parseInt(liLeftPadding.substring(0, liLeftPadding.length-2)) + 
-                      parseInt(liRightPadding.substring(0, liRightPadding.length-2));
+        var selectorPaddingAndMargins = getPaddingAndMargins(selector);
+        var buttonPaddingAndMargins = getPaddingAndMargins(button);
+        var inputPaddingAndMargins = getPaddingAndMargins(input);
+        var liPaddingAndMargins = getPaddingAndMargins(li);
+        var paddingAndMargins = selectorPaddingAndMargins + buttonPaddingAndMargins + inputPaddingAndMargins + liPaddingAndMargins
         
         
-        newWidth = newWidth - selectorOuterWidth - buttonOuterWidth - padding - 1;
+        newWidth = newWidth - selector.outerWidth() - button.outerWidth() - paddingAndMargins;
         input.width(newWidth);
     }
     
     google.maps.event.trigger(map, 'resize');
+}
+
+function getPaddingAndMargins(element){
+    var elementLeftPadding = element.css('padding-left');
+    elementLeftPadding = parseInt(elementLeftPadding.substring(0, elementLeftPadding.length-2));
+    
+    var elementRightPadding = element.css('padding-right');
+    elementRightPadding = parseInt(elementRightPadding.substring(0, elementRightPadding.length-2));
+    
+    var elementLeftMargin = element.css('margin-left');
+    elementLeftMargin = parseInt(elementLeftMargin.substring(0, elementLeftMargin.length-2));
+    
+    var elementRightMargin = element.css('margin-right');
+    elementRightMargin = parseInt(elementRightMargin.substring(0, elementRightMargin.length-2));
+    
+    var totalPaddingAndMargin = elementLeftPadding + elementRightPadding + elementLeftMargin + elementRightMargin;
+    
+    return totalPaddingAndMargin;
 }
 
 function inputChanged(){

@@ -36,13 +36,38 @@ body {
 
 
 #title_text {
-    font-size: 6em;
+    font-size: 4em;
     text-align: left;
     color: #FFFFFF;
-    text-shadow: 2px 2px 3px #000000;
+    text-shadow: -1.5px 0px 1px #000000;
     padding: 0;
     margin: 0;
+
 }
+
+#title_text > #title_text_R{
+    display: inline-block;
+    
+    -moz-border-radius: 0.1em;
+    -webkit-border-radius: 0.1em;
+    border-radius: 0.1em;
+    width: 1.3em;
+    padding: 0.05em;
+    margin-right: 0.05em;
+
+    text-align: right;
+    text-shadow: -1.5px 0px 1px #A64B00;
+    
+    background: rgb(255,150,64); /* Old browsers */
+    background: -moz-linear-gradient(top, rgba(255,150,64,1) 0%, rgba(191,113,48,1) 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,150,64,1)), color-stop(100%,rgba(191,113,48,1))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, rgba(255,150,64,1) 0%,rgba(191,113,48,1) 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, rgba(255,150,64,1) 0%,rgba(191,113,48,1) 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, rgba(255,150,64,1) 0%,rgba(191,113,48,1) 100%); /* IE10+ */
+    background: linear-gradient(to bottom, rgba(255,150,64,1) 0%,rgba(191,113,48,1) 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff9640', endColorstr='#bf7130',GradientType=0 ); /* IE6-9 */
+}
+
 #intro_text {
     padding-left: 1em;
     padding-right: 1em;
@@ -132,31 +157,34 @@ input[type="button"]:hover {
     cursor: pointer;
 }
 
-
-#map_canvas { 
-    text-align: center;
-}
 #map_container {
+    -webkit-mask-image: url(MapRoundedCornersHack.svg);
+    
     -moz-border-radius: 1em;
     -webkit-border-radius: 1em;
     border-radius: 1em;
     overflow: hidden;
-    border-style: solid;
-    border-width: 0em;
 
+    z-index: 2;
+}
+
+#map_canvas { 
+    text-align: center;
     
-    /*border-color: #FF9640;*/
 }
 #PlanRoute{
     -moz-border-radius: inherit;
     -webkit-border-radius: inherit;
     border-radius: inherit;
+    
     margin: 0;
     padding: 0;
+    
     position: absolute;
     background: rgba(0,0,0,0.8);
-    color: white;
-    font-size: 3em;
-    z-index: 2;
+
+    color: #FF7400;
+    font-size: 2.4em;
+    z-index: 4;
 }
 
