@@ -14,7 +14,7 @@ var removeFieldButton =
 var placeholderText = 'Enter something...';
 
 var inputBox = 
-'     <input class="locationInput" type="text" value="' + placeholderText + '" />' + '\n';
+'     <input class="locationInput" type="text" onkeyup="checkForEnter(event)" value="' + placeholderText + '" />' + '\n';
 
 function addLocationBox(){
     $('<li>'+selectElement+inputBox+removeFieldButton+'</li>').insertBefore($('#InputBoxesList').children().last());
@@ -38,7 +38,6 @@ function addLocationBox(){
             box.css("font", "italic");
         }
     });
-    //locationBox.width(locationBox.width()-50)
 }
 
 function removeLocationBox(button){
@@ -105,17 +104,49 @@ function hideMapButton(){
     $("#map_container").children('#PlanRoute').hide();
 }
 
-//Unimplemented functionality
+//Input Events
+function checkForEnter(event){
+        // look for window.event in case event isn't passed in
+        if (typeof event == 'undefined' && window.event) { event = window.event; }
+        if (event.keyCode == 13)
+        {
+            document.getElementById('PlanRoute').click();
+        }
+}
+
+//Change the autocomplete to the currently focused box
+function setAutocompleteBox(inputbox, type){  
+    var autocomplete = new google.maps.places.Autocomplete(inputbox);
+    autocomplete.bindTo('bounds', map); 
+    //Remove google defined placeholder
+    inputbox.setAttribute('placeholder',null);
+    if(type==null){
+        autocomplete.setTypes(type);
+    }
+}
+
+//Clearing all listeners is only way to remove autocomplete (see bug: http://code.google.com/p/gmaps-api-issues/issues/detail?id=3429)
+function clearAutocompleteBox(inputBox){
+    google.maps.event.clearListeners(inputBox, "focus");
+    google.maps.event.clearListeners(inputBox, "blur");
+    google.maps.event.clearListeners(inputBox, "keydown");
+}
+
 function selectChange(select){
     var selectedValue = select.options[select.selectedIndex].value.replace('select_','');
+    var inputSibling = $(select).siblings(".locationInput")[0];
     
     if(selectedValue == selectTypes.Address.value){
+        setAutocompleteBox(inputSibling, ['geocode'])
     }
     else if(selectedValue == selectTypes.GenericLocation.value){
+        clearAutocompleteBox(inputSibling);
     }
     else if(selectedValue == selectTypes.Chain.value){
+        clearAutocompleteBox(inputSibling);
     }
     else if(selectedValue == selectTypes.Item.value){
+        clearAutocompleteBox(inputSibling);
     }
     
 }

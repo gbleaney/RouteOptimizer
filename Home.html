@@ -10,28 +10,45 @@
         </script>
         <script src="scripts/google-maps-3-vs-1-0.js" type="text/javascript">
         </script>
-        <script type="text/javascript" src="GlobalVariables.js">
+        <script type="text/javascript" src="Javascript/GlobalVariables.js">
         </script>
-        <script type="text/javascript" src="Initialization.js">
+        <script type="text/javascript" src="Javascript/Initialization.js">
         </script>
-        <script type="text/javascript" src="UIComponents.js">
+        <script type="text/javascript" src="Javascript/UIComponents.js">
         </script>
-        <script type="text/javascript" src="Routing.js">
+        <script type="text/javascript" src="Javascript/Routing.js">
         </script>
         <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
-        <link rel="stylesheet" type="text/css" href="Styles.css">
+        <link href='Fonts/fontstylesheet.css' rel='stylesheet' type='text/css'>
+        
+        <link rel="stylesheet" type="text/css" href="CSS/Styles.css">
 
     </head>
     <body onload="initialize()">
-
         <div id="content">
-            <div id="content_padding"> 
+            <div id="content_padding">
+                
+                
                 <div id="title_text">
-                    <div id="title_text_R">R</div>outely
+                    <div id="title_text_R">
+                        <span>
+                            R
+                        </span>
+                        
+                    </div>
+                    <div id="title_text_OUTELY">
+                        <span>
+                            outely
+                        </span>
+                    </div>
                 </div>
+                
+                
                 <div id="intro_text">
                     Enter where you want to go or what you want to get, and we'll find you the fastest route possible.
                 </div>
+                
+                
                 <div id="input_boxes">
                     <ul id="InputBoxesList">
                         <li>
@@ -39,12 +56,15 @@
                         </li>
                     </ul>
                 </div>
+                
+                
                 <div id="map_container">
                     <input id="PlanRoute" type="button" value="Plan Route!" onclick="planRoute();"/>
                     <div id="map_canvas">
                     </div>
-                    
                 </div>
+                
+                
             </div>
         </div>
     </body>
@@ -56,6 +76,9 @@ Blues:
 006363 1D7373 009999 33CCCC 5CCCCC
 Oranges:
 A64B00	BF7130	FF7400	FF9640	FFB273
+
 Colour Schemes from: http://colorschemedesigner.com/
-Font: Lato from: ????
+
+Font: Lato by: Łukasz Dziedzic used under SIL Open Font License, 1.1
+
 -->

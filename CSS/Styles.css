@@ -36,28 +36,52 @@ body {
 
 
 #title_text {
-    font-size: 4em;
-    text-align: left;
-    color: #FFFFFF;
-    text-shadow: -1.5px 0px 1px #000000;
+
     padding: 0;
     margin: 0;
+    margin-bottom: 1em;
+
+    font-family: 'BebasNeueRegular', sans-serif;
+    color: #FFFFFF;
+    font-weight: bold;
 
 }
 
-#title_text > #title_text_R{
+#title_text > div > span {
+    position: absolute;
     display: inline-block;
-    
+    padding: 0;
+    margin: 0;
+}
+
+#title_text > #title_text_R > span {
+    bottom: -0.1em;
+    right: 0.02em;
+
+}
+
+#title_text > #title_text_OUTELY > span {
+    bottom: 0;
+}
+
+#title_text > #title_text_R{
+    position: relative;
+
+    display: inline-block;
+
     -moz-border-radius: 0.1em;
     -webkit-border-radius: 0.1em;
     border-radius: 0.1em;
+
     width: 1.3em;
-    padding: 0.05em;
-    margin-right: 0.05em;
+    height: 1.3em;
+    padding: 0em;
+    margin-right: 0em;
 
     text-align: right;
-    text-shadow: -1.5px 0px 1px #A64B00;
-    
+    text-shadow: -1px -1px 2px #A64B00 ;
+    font-size: 6em;
+
     background: rgb(255,150,64); /* Old browsers */
     background: -moz-linear-gradient(top, rgba(255,150,64,1) 0%, rgba(191,113,48,1) 100%); /* FF3.6+ */
     background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,150,64,1)), color-stop(100%,rgba(191,113,48,1))); /* Chrome,Safari4+ */
@@ -68,14 +92,27 @@ body {
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff9640', endColorstr='#bf7130',GradientType=0 ); /* IE6-9 */
 }
 
+#title_text > #title_text_OUTELY{
+    position: relative;
+
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+
+    text-align: left;
+    font-size: 4em;
+    text-shadow: -1px -1px 2px #666;
+}
+
+
+
 #intro_text {
     padding-left: 1em;
     padding-right: 1em;
     padding-top: 0.4em;
     padding-bottom: 0.6em;
     /*color: #5CCCCC;*/
-    margin-top: 0.7em;
-    margin-bottom: 1.4em;
+    margin-bottom: 1em;
 
     background-color: #FFFFFF;
     -moz-border-radius: 0.6em;
@@ -89,60 +126,59 @@ body {
     padding-right: 0.05em;
     padding-top: 0.1em;
     padding-bottom: 0;
-    margin-top: 0.7em;
-    margin-bottom: 0.7em;
+    margin-bottom: 1em;
 
     background-color: #FFFFFF;
     -moz-border-radius: 0.6em;
     -webkit-border-radius: 0.6em;
     border-radius: 0.6em;
 }
-#InputBoxesList { 
+#input_boxes > #InputBoxesList { 
     list-style-type: none;
     padding: 0;
     padding-top: 0.2em;
     margin: 0;
 }
-#InputBoxesList > li {
+#input_boxes > #InputBoxesList > li {
     padding-top: 0.2em;
     padding-bottom: 0.2em;
     padding-left: 0.2em;
     border-bottom: solid #CCCCCC thin;
 
 }
-#InputBoxesList > li > .locationTypeSelector{
+#input_boxes > #InputBoxesList > li > .locationTypeSelector{
     float: left;
     border: none;
 }
 
-#InputBoxesList > li > .removeFieldButton{
+#input_boxes > #InputBoxesList > li > .removeFieldButton{
     float: right;
     background: #FFFFFF
 }
-#InputBoxesList > li > .removeFieldButton:hover{
+#input_boxes > #InputBoxesList > li > .removeFieldButton:hover{
     float: right;
     background: #CCCCCC
 }
 
-#InputBoxesList > li:last-child {
+#input_boxes > #InputBoxesList > li:last-child {
     border: none;
 }
 
-#InputBoxesList > li > input[type="text"] {
+#input_boxes > #InputBoxesList > li > input[type="text"] {
     border: none;
     font: italic;
     color: #CCCCCC;
     padding-left: 0.4em;
 }
 
-#InputBoxesList > li > #AddLocationButton {
+#input_boxes > #InputBoxesList > li > #AddLocationButton {
     width: 100%;
     height: 100%;
     background: #FFFFFF;
     color: #999999;
 }
 
-#InputBoxesList > li > #AddLocationButton:hover {
+#input_boxes > #InputBoxesList > li > #AddLocationButton:hover {
     cursor: pointer;
 }
 
@@ -159,7 +195,7 @@ input[type="button"]:hover {
 
 #map_container {
     -webkit-mask-image: url(MapRoundedCornersHack.svg);
-    
+
     -moz-border-radius: 1em;
     -webkit-border-radius: 1em;
     border-radius: 1em;
@@ -168,18 +204,18 @@ input[type="button"]:hover {
     z-index: 2;
 }
 
-#map_canvas { 
+#map_container > #map_canvas { 
     text-align: center;
-    
+
 }
-#PlanRoute{
+#map_container > #PlanRoute{
     -moz-border-radius: inherit;
     -webkit-border-radius: inherit;
     border-radius: inherit;
-    
+
     margin: 0;
     padding: 0;
-    
+
     position: absolute;
     background: rgba(0,0,0,0.8);
 

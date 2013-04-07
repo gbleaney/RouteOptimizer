@@ -1,6 +1,8 @@
 function planRoute(){
     hideMapButton();
-    parseDestinations();
+    if(checkCurrentLocation()){
+        parseDestinations();
+    }
 }
 
 function parseDestinations(){
@@ -12,6 +14,7 @@ function parseDestinations(){
         var locationInputBox = $(listItems[i]).children('.locationInput')[0];
         var selectedValue = selector.options[selector.selectedIndex].value.replace('select_','');
         selectedValue = parseInt(selectedValue)
+        var inputValue = locationInputBox.value;
         
         var placesCallback = function(results, status){
             if (status == google.maps.places.PlacesServiceStatus.OK) {
@@ -23,7 +26,7 @@ function parseDestinations(){
                 destinations.push(destination);
 
             }else{
-                alert('Error parsing '+item+' into a location. Response code: '+status);
+                alert('Error parsing location. Response code: '+status);
                 destinations.push(null);
             }
                     
@@ -34,20 +37,21 @@ function parseDestinations(){
         
         switch (selectedValue) {
             case selectTypes.Default.value:
+                destinations.push(null);
                 break;
             case selectTypes.Address.value:
                 destinations.push({
-                    location: locationInputBox.value,
+                    location: inputValue,
                     stopover: true
                 });
                 break;
                 
             case selectTypes.GenericLocation.value:
                 var type = new Array();
-                type.push(locationInputBox.value);
+                type.push(inputValue);
                 var genericRequest = {
                     location: currentLocation,
-                    types: type,
+                    types: [inputValue],
                     rankBy: google.maps.places.RankBy.DISTANCE 
                 };
                 
@@ -55,10 +59,10 @@ function parseDestinations(){
                 break;
                 
             case selectTypes.Chain.value:
-                var name = locationInputBox.value;
                 var chainRequest = {
                     location: currentLocation,
-                    name: name,
+                    //Quotes are required to circumvent bug in API https://code.google.com/p/gmaps-api-issues/issues/detail?id=4792
+                    name: "\"" + [inputValue] + "\"",
                     rankBy: google.maps.places.RankBy.DISTANCE 
                 };
                 
@@ -66,10 +70,9 @@ function parseDestinations(){
                 break;
                 
             case selectTypes.Item.value:
-                var item = locationInputBox.value;
                 var itemRequest = {
                     location: currentLocation,
-                    keyword: item,
+                    keyword: [inputValue],
                     rankBy: google.maps.places.RankBy.DISTANCE 
                 };
                 
@@ -116,4 +119,14 @@ function calcRoute(start, destinations) {
             directionsDisplay.setDirections(result);
         }
     });
+}
+
+function checkCurrentLocation(){
+    if(currentLocation==null){
+        alert('Warning! No location set for current location.');
+        return false;
+    }
+    else{
+        return true;
+    }
 }
