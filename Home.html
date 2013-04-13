@@ -20,21 +20,21 @@
         </script>
         <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
         <link href='Fonts/fontstylesheet.css' rel='stylesheet' type='text/css'>
-        
+
         <link rel="stylesheet" type="text/css" href="CSS/Styles.css">
 
     </head>
     <body onload="initialize()">
         <div id="content">
             <div id="content_padding">
-                
-                
+
+
                 <div id="title_text">
                     <div id="title_text_R">
                         <span>
                             R
                         </span>
-                        
+
                     </div>
                     <div id="title_text_OUTELY">
                         <span>
@@ -42,29 +42,52 @@
                         </span>
                     </div>
                 </div>
-                
-                
-                <div id="intro_text">
-                    Enter where you want to go or what you want to get, and we'll find you the fastest route possible.
+
+                <div id="info_instructions_settings"> 
+                    <div id="intro_text">
+                        Enter where you want to go or what you want to get, and we'll find you the fastest route possible.
+                    </div>
+                    <div id="info_buttons">
+                        <div id="instructions_button_container">
+                            <input id="instructions_button" type="button" value="Instructions" onclick="showInstructions();"/>
+                            <div class="clearFloat"></div>
+                        </div>
+                        <div id="settings_button_container">
+                            <input id="settings_button" type="button" value="Settings" onclick="showSettings();"/>
+                            <div class="clearFloat"></div>
+                        </div>
+                        <div class="clearFloat"></div>
+                    </div>
+                    <div id="instructions_button_bottom_border"></div>
+                    <div id="settings_button_bottom_border"></div> 
+                    <div id="instructions_container">
+                        <div id="instructions">
+                            Instructions
+                        </div>
+                    </div>
+                    <div id="settings_container">
+                        <div id="settings">
+                            Settings
+                        </div>
+                    </div>
                 </div>
-                
-                
+
                 <div id="input_boxes">
-                    <ul id="InputBoxesList">
+                    <ul id="input_boxes_list">
                         <li>
-                            <input id="AddLocationButton" type="button" value="Add Another Location" onclick="addLocationBox();inputChanged();"/>
+                            <input id="add_location_button" type="button" value="Add Another Location" onclick="addLocationBox();inputChanged();"/>
                         </li>
                     </ul>
                 </div>
-                
-                
+
+
                 <div id="map_container">
-                    <input id="PlanRoute" type="button" value="Plan Route!" onclick="planRoute();"/>
+                    <input id="plan_route_button" type="button" value="Plan Route!" onclick="planRoute();"/>
                     <div id="map_canvas">
                     </div>
                 </div>
-                
-                
+
+
             </div>
         </div>
     </body>

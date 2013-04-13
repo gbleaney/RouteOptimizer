@@ -1,40 +1,3 @@
-var map;
-var directionsDisplay;
-var directionsService;
-var size;
-var placesService;
-var currentLocation;
-
-//Define the options availible for the select list
-var selectTypes = {
-    Default : {
-        value: -1, 
-        name: "Choose Option", 
-        code: "CO"
-    }, 
-    Address : {
-        value: 0, 
-        name: "Address", 
-        code: "A"
-    }, 
-    GenericLocation: {
-        value: 1, 
-        name: "Generic Location", 
-        code: "GL"
-    }, 
-    Chain : {
-        value: 2, 
-        name: "Chain", 
-        code: "C"
-    },
-    Item : {
-        value: 3, 
-        name: "Item", 
-        code: "I"
-    }
-};
-
-var places = new Array(
     "accounting",
     "airport",
     "amusement_park",
@@ -131,7 +94,7 @@ var places = new Array(
     "university",
     "veterinary_care",
     "zoo",
-    
+	
     "administrative_area_level_1",
     "administrative_area_level_2",
     "administrative_area_level_3",
@@ -161,5 +124,5 @@ var places = new Array(
     "sublocality_level_2",
     "sublocality_level_1",
     "subpremise",
-    "transit_station"
-);
+    "transit_station
+

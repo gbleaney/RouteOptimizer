@@ -13,8 +13,9 @@ function initialize() {
     centreOnCurrentLocation();
       addLocationBox();
       placesService = new google.maps.places.PlacesService(map);
-    
-    setSizes();
+      
+    initUI();
+
     $(window).resize(
         function () { 
             setSizes(); 

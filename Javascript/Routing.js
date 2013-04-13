@@ -6,7 +6,7 @@ function planRoute(){
 }
 
 function parseDestinations(){
-    var listItems = $('#InputBoxesList').children();
+    var listItems = $('#input_boxes_list').children();
     var destinations = new Array();
     
     for(var i=0; i< listItems.length - 1;i++){
@@ -48,10 +48,11 @@ function parseDestinations(){
                 
             case selectTypes.GenericLocation.value:
                 var type = new Array();
-                type.push(inputValue);
+                var cleanedValue = cleanAndValidateGenericLocation(inputValue);
+                type.push(cleanedValue);
                 var genericRequest = {
                     location: currentLocation,
-                    types: [inputValue],
+                    types: [cleanedValue],
                     rankBy: google.maps.places.RankBy.DISTANCE 
                 };
                 
@@ -128,5 +129,18 @@ function checkCurrentLocation(){
     }
     else{
         return true;
+    }
+}
+
+function cleanAndValidateGenericLocation(genericlocation){
+    var cleanLocation = genericlocation.toLowerCase();
+    cleanLocation = cleanLocation.replace(" ","_"); 
+    
+    if(jQuery.inArray(cleanLocation, places)!=-1){
+        return cleanLocation;
+    }
+    else{
+        alert(genericlocation + " is not a currently supported location type.");
+        return null;
     }
 }

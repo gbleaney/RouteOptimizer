@@ -16,11 +16,19 @@ var placeholderText = 'Enter something...';
 var inputBox = 
 '     <input class="locationInput" type="text" onkeyup="checkForEnter(event)" value="' + placeholderText + '" />' + '\n';
 
+function initUI(){
+    setSizes();
+    $("#instructions").hide();
+    $("#settings").hide();
+    $("#instructions_button_bottom_border").hide();
+    $("#settings_button_bottom_border").hide();
+}
+
 function addLocationBox(){
-    $('<li>'+selectElement+inputBox+removeFieldButton+'</li>').insertBefore($('#InputBoxesList').children().last());
+    $('<li>'+selectElement+inputBox+removeFieldButton+'</li>').insertBefore($('#input_boxes_list').children().last());
     
     //This code could be replaced by the HTML5 "Placeholder" attribute, but this remains here instead for compatibility
-    var locationBox = $( '.locationInput','#InputBoxesList:last-child');
+    var locationBox = $( '.locationInput','#input_boxes_list:last-child');
     locationBox.on("focusin", function(event){
         var box = $(event.currentTarget);
         if(box.val()==placeholderText){
@@ -54,10 +62,10 @@ function setSizes(){
     $("#map_container").height($("#map_container").innerWidth());
     $("#map_canvas").height($("#map_canvas").innerWidth());
     
-    $("#map_container").children('#PlanRoute').width($("#map_canvas").innerWidth());
-    $("#map_container").children('#PlanRoute').height($("#map_canvas").innerHeight());
+    $("#map_container").children('#plan_route_button').width($("#map_canvas").innerWidth());
+    $("#map_container").children('#plan_route_button').height($("#map_canvas").innerHeight());
     
-    var inputBoxesListItems = $("#InputBoxesList").children();
+    var inputBoxesListItems = $("#input_boxes_list").children();
     for( var i=0; i < inputBoxesListItems.length-1; i++){
         var li = $(inputBoxesListItems[i]);
         var selector = $(li.children('.locationTypeSelector')[0]);
@@ -98,19 +106,18 @@ function getPaddingAndMargins(element){
 }
 
 function inputChanged(){
-    $("#map_container").children('#PlanRoute').show();
+    $("#map_container").children('#plan_route_button').show();
 }
 function hideMapButton(){
-    $("#map_container").children('#PlanRoute').hide();
+    $("#map_container").children('#plan_route_button').hide();
 }
 
-//Input Events
 function checkForEnter(event){
         // look for window.event in case event isn't passed in
         if (typeof event == 'undefined' && window.event) { event = window.event; }
         if (event.keyCode == 13)
         {
-            document.getElementById('PlanRoute').click();
+            document.getElementById('plan_route_button').click();
         }
 }
 
@@ -135,18 +142,44 @@ function clearAutocompleteBox(inputBox){
 function selectChange(select){
     var selectedValue = select.options[select.selectedIndex].value.replace('select_','');
     var inputSibling = $(select).siblings(".locationInput")[0];
+    clearAutocompleteBox(inputSibling);
     
     if(selectedValue == selectTypes.Address.value){
         setAutocompleteBox(inputSibling, ['geocode'])
     }
     else if(selectedValue == selectTypes.GenericLocation.value){
-        clearAutocompleteBox(inputSibling);
     }
     else if(selectedValue == selectTypes.Chain.value){
-        clearAutocompleteBox(inputSibling);
     }
     else if(selectedValue == selectTypes.Item.value){
-        clearAutocompleteBox(inputSibling);
     }
     
+}
+
+function showInstructions(){
+    $("#settings").hide();
+    $("#instructions_button_bottom_border").hide();
+    
+    var instructions = $("#instructions");
+    if(instructions.is(':visible')){
+        instructions.hide();
+        $("#settings_button_bottom_border").hide();
+    }else{
+        instructions.show();
+        $("#settings_button_bottom_border").show();
+    }
+}
+
+function showSettings(){
+    $("#instructions").hide();
+    $("#settings_button_bottom_border").hide();
+    
+    var settings = $("#settings");
+    if(settings.is(':visible')){
+        settings.hide();
+        $("#instructions_button_bottom_border").hide();
+    }else{
+        settings.show();
+        $("#instructions_button_bottom_border").show();
+    }
 }
