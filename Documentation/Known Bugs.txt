@@ -1,0 +1,1 @@
+1) When select is set to address, and user types text into input field, deletes the text, and clicks elsewhere the placeholder text is not restored

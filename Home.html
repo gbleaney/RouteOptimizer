@@ -18,7 +18,7 @@
         </script>
         <script type="text/javascript" src="Javascript/Routing.js">
         </script>
-        <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
         <link href='Fonts/fontstylesheet.css' rel='stylesheet' type='text/css'>
 
         <link rel="stylesheet" type="text/css" href="CSS/Styles.css">
@@ -62,12 +62,36 @@
                     <div id="settings_button_bottom_border"></div> 
                     <div id="instructions_container">
                         <div id="instructions">
-                            Instructions
+                            Use the fields below to input what you're looking for. 
+                            When you've inputted everything you want, click anywhere on 
+                            the map to plan the fastest route between your current location and all of your inputs.
+                            There are four different ways to search for what you want:
+                            <br>
+                            <br>
+                            <b>Address - </b>
+                            Enter an address like you would in any mapping application such as "55 Main Street, Toronto"
+                            <br>
+                            <br>
+                            <b>Generic Location - </b>
+                            Enter a generic location such as "Hardware Store" or "Cafe"
+                            <br>
+                            <br>
+                            <b>Chain - </b>
+                            Enter your favourite store chain such as "Tim Hortons"
+                            <br>
+                            <br>
+                            <b>Item - </b>
+                            Enter an item you wish to purchase such as "Coffee" or "Milk"
                         </div>
                     </div>
                     <div id="settings_container">
                         <div id="settings">
-                            Settings
+                            Instead of using your current location, you may choose to use a custom start location.
+                            <br>
+                            <br>
+                            <input type="checkbox" id="use_custom_location" onchange="inputChanged()">
+                            <label for="use_custom_location">Use custom location:</label>
+                            <input id="custom_location" type="text" onclick="setAutocompleteBox(this, ['geocode'])" onfocus="inputChanged()">
                         </div>
                     </div>
                 </div>
@@ -75,7 +99,7 @@
                 <div id="input_boxes">
                     <ul id="input_boxes_list">
                         <li>
-                            <input id="add_location_button" type="button" value="Add Another Location" onclick="addLocationBox();inputChanged();"/>
+                            <input id="add_location_button" type="button" value="Add Another Location" onclick="addLocationBox(true);inputChanged();"/>
                         </li>
                     </ul>
                 </div>
@@ -102,6 +126,6 @@ A64B00	BF7130	FF7400	FF9640	FFB273
 
 Colour Schemes from: http://colorschemedesigner.com/
 
-Font: Lato by: Łukasz Dziedzic used under SIL Open Font License, 1.1
+Font: Open Sans
 
 -->

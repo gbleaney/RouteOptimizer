@@ -1,6 +1,7 @@
 var map;
 var directionsDisplay;
 var directionsService;
+var geocoder;
 var size;
 var placesService;
 var currentLocation;

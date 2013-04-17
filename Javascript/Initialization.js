@@ -2,6 +2,7 @@ function initialize() {
     
     directionsService = new google.maps.DirectionsService()
     directionsDisplay = new google.maps.DirectionsRenderer();
+    geocoder = new google.maps.Geocoder();
     var chicago = new google.maps.LatLng(41.850033, -87.6500523);
     var mapOptions = {
         zoom: 15,
@@ -11,8 +12,7 @@ function initialize() {
     map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
     directionsDisplay.setMap(map);
     centreOnCurrentLocation();
-      addLocationBox();
-      placesService = new google.maps.places.PlacesService(map);
+    placesService = new google.maps.places.PlacesService(map);
       
     initUI();
 

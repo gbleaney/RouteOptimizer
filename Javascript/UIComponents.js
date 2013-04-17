@@ -17,15 +17,23 @@ var inputBox =
 '     <input class="locationInput" type="text" onkeyup="checkForEnter(event)" value="' + placeholderText + '" />' + '\n';
 
 function initUI(){
+    $("#custom_location").prop("disabled", true);
+    $("#use_custom_location").change(function(){
+        customLocationCheckboxChanged();
+    })
+    addLocationBox(false);
     setSizes();
-    $("#instructions").hide();
-    $("#settings").hide();
-    $("#instructions_button_bottom_border").hide();
-    $("#settings_button_bottom_border").hide();
+
 }
 
-function addLocationBox(){
-    $('<li>'+selectElement+inputBox+removeFieldButton+'</li>').insertBefore($('#input_boxes_list').children().last());
+function addLocationBox(showAnimation){
+    var inputRow = $('<li>'+selectElement+inputBox+removeFieldButton+'</li>');
+    inputRow.hide();
+    inputRow.insertBefore($('#input_boxes_list').children().last());
+    if(showAnimation)
+        inputRow.slideDown(200);
+    else
+        inputRow.show();
     
     //This code could be replaced by the HTML5 "Placeholder" attribute, but this remains here instead for compatibility
     var locationBox = $( '.locationInput','#input_boxes_list:last-child');
@@ -34,7 +42,7 @@ function addLocationBox(){
         if(box.val()==placeholderText){
             box.val("");
             box.css("color", "#000000");
-            box.css("font", "normal");
+            box.css("font-style", "normal");
         }
         inputChanged();
     });
@@ -43,13 +51,16 @@ function addLocationBox(){
         if(box.val()==""){
             box.val(placeholderText);
             box.css("color", "#CCCCCC");
-            box.css("font", "italic");
+            box.css("font-style", "italic");
         }
     });
 }
 
 function removeLocationBox(button){
-    $(button.parentNode).remove();
+    var inputRow = $(button.parentNode);
+    inputRow.slideUp(200, function (){
+        inputRow.remove();
+    })
 }
 
 function setSizes(){
@@ -106,10 +117,10 @@ function getPaddingAndMargins(element){
 }
 
 function inputChanged(){
-    $("#map_container").children('#plan_route_button').show();
+    $('#plan_route_button').show();
 }
 function hideMapButton(){
-    $("#map_container").children('#plan_route_button').hide();
+    $('#plan_route_button').hide();
 }
 
 function checkForEnter(event){
@@ -126,7 +137,7 @@ function setAutocompleteBox(inputbox, type){
     var autocomplete = new google.maps.places.Autocomplete(inputbox);
     autocomplete.bindTo('bounds', map); 
     //Remove google defined placeholder
-    inputbox.setAttribute('placeholder',null);
+    $(inputbox).removeAttr('placeholder');
     if(type==null){
         autocomplete.setTypes(type);
     }
@@ -157,29 +168,59 @@ function selectChange(select){
 }
 
 function showInstructions(){
-    $("#settings").hide();
-    $("#instructions_button_bottom_border").hide();
-    
     var instructions = $("#instructions");
+    var instructionsButton = $("#instructions_button");
+    var settingsButton = $("#settings_button");
+    
+    $("#settings").hide();
+    $("#instructions_button_bottom_border").css('border-color','#FFFFFF');
+    settingsButton.css('color','#999999');
+    settingsButton.css('font-weight','normal');
+    
     if(instructions.is(':visible')){
         instructions.hide();
-        $("#settings_button_bottom_border").hide();
+        $("#settings_button_bottom_border").css('border-color','#FFFFFF');
+        instructionsButton.css('color','#999999');
+        instructionsButton.css('font-weight','normal');
     }else{
         instructions.show();
-        $("#settings_button_bottom_border").show();
+        $("#settings_button_bottom_border").css('border-color','#CCCCCC');
+        instructionsButton.css('font-weight','bold');
+        instructionsButton.css('color','#333333');
     }
 }
 
 function showSettings(){
+    var settings = $("#settings");
+    var instructionsButton = $("#instructions_button");
+    var settingsButton = $("#settings_button");
+    
     $("#instructions").hide();
-    $("#settings_button_bottom_border").hide();
+    $("#settings_button_bottom_border").css('border-color','#FFFFFF');
+    instructionsButton.css('color','#999999');
+    instructionsButton.css('font-weight','normal');
     
     var settings = $("#settings");
+    var instructionsButton = $("#instructions_button");
+    var settingsButton = $("#settings_button")
     if(settings.is(':visible')){
         settings.hide();
-        $("#instructions_button_bottom_border").hide();
+        $("#instructions_button_bottom_border").css('border-color','#FFFFFF');
+        settingsButton.css('color','#999999');
+        settingsButton.css('font-weight','normal');
+        
     }else{
         settings.show();
-        $("#instructions_button_bottom_border").show();
+        $("#instructions_button_bottom_border").css('border-color','#CCCCCC');
+        settingsButton.css('font-weight','bold');
+        settingsButton.css('color','#333333');
     }
+}
+
+function customLocationCheckboxChanged(){
+     if(document.getElementById("use_custom_location").checked){
+         $("#custom_location").prop("disabled", false);
+     }else{
+         $("#custom_location").prop("disabled", true);
+     }
 }

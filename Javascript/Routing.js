@@ -1,8 +1,8 @@
 function planRoute(){
     hideMapButton();
-    if(checkCurrentLocation()){
+    updateCurrentLocation(function(){
         parseDestinations();
-    }
+    });
 }
 
 function parseDestinations(){
@@ -95,16 +95,8 @@ function calcRouteFromCurrentLocation(destinations) {
     destinations = destinations.filter(function(val) {
         return val !== null;
     });
-    // Try HTML5 geolocation
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(function (position) {
-            var currentLocation = new google.maps.LatLng(position.coords.latitude,
-                position.coords.longitude);
-            calcRoute(currentLocation, destinations);
-        }, function () {
-            alert("Error, could not get geolocation");
-        });
-    }
+    
+    calcRoute(currentLocation, destinations);
 }
 
 function calcRoute(start, destinations) {
@@ -122,13 +114,34 @@ function calcRoute(start, destinations) {
     });
 }
 
-function checkCurrentLocation(){
-    if(currentLocation==null){
-        alert('Warning! No location set for current location.');
-        return false;
+function updateCurrentLocation(callback){
+    var useCustomLocation = document.getElementById("use_custom_location").checked;
+    var customLocation = $("#custom_location").val();
+    if(useCustomLocation&&customLocation!=""){
+        geocoder.geocode( 
+        {
+            'address': customLocation
+        }, 
+        function(results, status) {
+            if (status == google.maps.GeocoderStatus.OK) {
+                currentLocation = results[0].geometry.location;
+                callback();
+            } else {
+                alert("Unable to geocode the custom location you supplied for the following reason: " + status);
+            }
+        });
     }
     else{
-        return true;
+        // Try HTML5 geolocation
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function (position) {
+                currentLocation = new google.maps.LatLng(position.coords.latitude,
+                    position.coords.longitude);
+                callback();
+            }, function () {
+                alert("Error, could not get geolocation. Try allowing this page to use your location, or manually set your location in settings");
+            });
+        }
     }
 }
 

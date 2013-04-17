@@ -10,7 +10,8 @@
 /* Whole Page Stuff */
 html { 
     min-height: 100%;
-    font-family: 'Lato', sans-serif;
+    font-family: 'Open Sans', sans-serif;
+    color: #333333;
     padding: 0;
     margin:  0;
 }
@@ -51,11 +52,17 @@ input[type="button"] {
     border-radius: 0.4em;
     border: none;
     color: #999999;
-    background: #FFFFFF
+    background: #FFFFFF;
+    font-family: 'Open Sans', sans-serif;
+
 }
 
 input[type="button"]:hover {
     cursor: pointer;
+}
+
+select{
+    font-family: 'Open Sans', sans-serif;
 }
 
 
@@ -156,7 +163,6 @@ input[type="button"]:hover {
 
 #info_instructions_settings > #info_buttons > #instructions_button_container {
     float: left;
-    
     width: 49%;
 }
 
@@ -185,10 +191,12 @@ input[type="button"]:hover {
 
 #info_instructions_settings > #instructions_button_bottom_border{
     float: left;
+    border-color: #FFFFFF;
 }
 
 #info_instructions_settings > #settings_button_bottom_border{
     float: right;
+    border-color: #FFFFFF;
 }
 
 #info_instructions_settings >  #instructions_container, #settings_container {
@@ -200,6 +208,7 @@ input[type="button"]:hover {
     padding-left: 1em;
     padding-right: 1em;
     text-align: left;
+    display: none;
 }
 
 
@@ -249,7 +258,7 @@ input[type="button"]:hover {
 
 #input_boxes > #input_boxes_list > li > input[type="text"] {
     border: none;
-    font: italic;
+    font-style: italic;
     color: #CCCCCC;
     padding-left: 0.4em;
 }
@@ -296,5 +305,9 @@ input[type="button"]:hover {
     color: #FF7400;
     font-size: 2.4em;
     z-index: 4;
+}
+
+#map_container > #plan_route_button:hover{
+    background: rgba(5,5,5,0.8);
 }
 
